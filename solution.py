@@ -30,16 +30,15 @@ except Exception as e:
 # - Scholarship rules
 
 print("\nNumber of students are  :  ", students.shape[0])
-print("\nNumber of departments are : ", scholarship.shape[0])
-cities = students['city'].value_counts()
-print("\nUnique cities are : ", cities)
+print("\nNumber of departments are : ", students_df['department'].nunique())
+print("\nUnique cities are : ", students_df['city'].nunique())
 print("\nFirst five records are :" )
 print(students.head())
 
 
 student_info = pd.merge(students_df,attendance_df,on="student_id")
 
-if(student_info.isna().sum().sum() == 0):
+if(len(students_df) == len(student_info)):
     print("\nData has no missing records ")
 else :
     print("\nData has missing records. Please correct it ")
@@ -60,6 +59,7 @@ else :
 # print(student_info)
 
 print("\nMean marks  : ", round(np.mean(student_info['marks']),2))
+print("\nMean Attendance",round(np.mean(student_info['attendance']),2))
 print("\nMedian marks : ",round(np.median(student_info['marks']),2))
 print("\nStandard deviation of marks : ", round(np.std(student_info['marks']),2))
 print("\nMaximum marks : ",np.max(student_info['marks']))
@@ -69,17 +69,17 @@ print("\nMinimum marks : ",np.min(student_info['marks']))
 
 def find_data(scholarship,student_info):
     if student_info['department'] == "CSE":
-        if (student_info['marks']>scholarship['minimum_marks'].iloc[0]) & (student_info['attendance']>scholarship['minimum_attendance'].iloc[0]) :
+        if (student_info['marks']>=scholarship['minimum_marks'].iloc[0]) & (student_info['attendance']>=scholarship['minimum_attendance'].iloc[0]) :
             return "Eligible"
         else :
             return "Not Eligible"
     elif student_info['department'] == "IT":
-        if (student_info['marks']>scholarship['minimum_marks'].iloc[0]) & (student_info['attendance']>scholarship['minimum_attendance'].iloc[0]) :
+        if (student_info['marks']>=scholarship['minimum_marks'].iloc[0]) & (student_info['attendance']>=scholarship['minimum_attendance'].iloc[0]) :
             return "Eligible"
         else :
             return"Not Eligible"
     elif student_info['department'] == "ECE":
-        if (student_info['marks']>scholarship['minimum_marks'].iloc[0]) & (student_info['attendance']>scholarship['minimum_attendance'].iloc[0]) :
+        if (student_info['marks']>=scholarship['minimum_marks'].iloc[0]) & (student_info['attendance']>=scholarship['minimum_attendance'].iloc[0]) :
             return "Eligible"
         else :
             return "Not Eligible"
@@ -105,16 +105,16 @@ student_info['final_marks'] = student_info.apply(
 
 
 def performance(student_info):
-    if student_info['marks'] >= 90:
+    if student_info['final_marks'] >= 90:
         return "Outstanding"
-    elif student_info['marks'] >= 80 :
+    elif student_info['final_marks'] >= 80 :
         return  "Excellent"
-    elif student_info['marks'] >= 70:
+    elif student_info['final_marks'] >= 70:
         return "Good"
-    elif student_info['marks'] >= 60:
+    elif student_info['final_marks'] >= 60:
         return "Average"
     else :
-        return "Need Improvement"
+        return "Needs Improvement"
 
 student_info['performance'] = student_info.apply(
     lambda row : performance(row),
@@ -131,7 +131,7 @@ student_info['performance'] = student_info.apply(
 # 7. Number of students in each performance category.
 
 print("\nTop 5 students according to final marks. >> ")
-print(student_info.sort_values('final_marks').head())
+print(student_info.sort_values('final_marks',ascending=False).head())
 
 print("\nDepartment-wise average final marks. >> ")
 print(round(student_info.groupby('department')['final_marks'].mean(),2))
@@ -144,7 +144,7 @@ print(student_info[student_info['attendance'] == np.max(student_info['attendance
 
 print("\nDepartment with the highest average final marks. >>")
 # print(student_info[student_info['attendance'] == np.max(student_info['attendance']) ]['department'])
-result = student_info.groupby('department')['marks'].mean()
+result = student_info.groupby('department')['final_marks'].mean()
 
 print(result.idxmax())
 
@@ -164,7 +164,6 @@ student_info.to_sql(
     index=False
 )
 
-print("\nAll scholarship-eligible students.")
 
 def run_query(query):
     cursor = connection.execute(query)
@@ -174,10 +173,17 @@ def run_query(query):
 
 
 query = """ select * from student_performance """
-query = """ select name,department,scholar_status  from student_performance  """
-query = """ select * from student_performance where final_marks>85"""
-query = """select department, round(avg(marks),2) from student_performance group by department """
 run_query(query)
+print("\n")
+query = """ select name,department,scholar_status  from student_performance  """
+run_query(query)
+print("\n")
+query = """ select * from student_performance where final_marks>85"""
+run_query(query)
+print("\n")
+query = """select department, round(avg(final_marks),2) from student_performance group by department """
+run_query(query)
+print("\n")
 # print(student_info.columns)
 
 
@@ -188,12 +194,12 @@ run_query(query)
 result = student_info.groupby('department')['final_marks'].mean()
 x = result.index
 y = result.values
-plt.plot(x,y)
+plt.bar(x,y)
 plt.xlabel("Department")
-plt.ylabel("Average value")
+plt.ylabel("Average Final Marks")
 plt.title("Department VS Average value", fontsize=16)
-plt.show()
 plt.savefig("department_performance.png")
+plt.show()
 
 
 # # Performance Category Distribution
@@ -207,9 +213,9 @@ plt.pie(
     labels=performance.index
     
     )
-plt.title("Student Distribution by Department", fontsize=16)
-plt.show()
+plt.title("Performance Category Distribution", fontsize=16)
 plt.savefig("performance_distribution.png")
+plt.show()
 
 
 # The JSON file must contain at least:
@@ -233,11 +239,11 @@ report = {
     "average_attendance": float(round(student_info['attendance'].mean(),2)),
     "scholarship_students": int(student_info[student_info['scholar_status'] == "Eligible"]['student_id'].count()),
     # "top_student": student_info.sort_values('marks',ascending=False)['name'].iloc[0],
-    "top_student" : student_info.loc[student_info['marks'].idxmax(),"name"],
+    "top_student" : student_info.loc[student_info['final_marks'].idxmax(),"name"],
     # "best_department": student_info[student_info['marks']  == np.max(student_info['marks'])]['department'].values,
-    "best_department" : student_info.loc[student_info['marks'].idxmax(),'department'],
+    "best_department" :  student_info.groupby("department")["final_marks"].mean().idxmax(),
     # "highest_attendance_student": student_info[student_info['attendance']==np.max(student_info['attendance'])]["name"]
-    "highest_attendance_student": student_info.loc[student_info['marks'].idxmax(),'name']
+    "highest_attendance_student": student_info.loc[student_info['attendance'].idxmax(),'name']
 }
 
 try:
