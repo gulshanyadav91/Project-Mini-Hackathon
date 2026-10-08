@@ -1,0 +1,162 @@
+Number of students are  :   30
+
+Number of departments are :  3
+
+Unique cities are :  4
+
+First five records are :
+   student_id         name department     city  marks
+0         101  Aman Sharma        CSE    Delhi     85
+1         102  Priya Verma         IT  Lucknow     78
+2         103  Rohit Singh        CSE    Delhi     92
+3         104   Neha Gupta        ECE   Kanpur     67
+4         105  Vikas Yadav         IT  Lucknow     74
+
+Data has no missing records 
+
+Mean marks  :  81.03
+
+Mean Attendance 89.27
+
+Median marks :  81.5
+
+Standard deviation of marks :  8.65
+
+Maximum marks :  95
+
+Minimum marks :  64
+
+Top 5 students according to final marks. >> 
+    student_id          name department     city  marks  attendance scholar_status  final_marks  performance
+8          109  Meera Kapoor        CSE    Delhi     95          98       Eligible          100  Outstanding
+18         119     Riya Bose        ECE    Noida     94          97       Eligible           99  Outstanding
+26         127   Aditi Menon         IT    Noida     93          96       Eligible           98  Outstanding
+2          103   Rohit Singh        CSE    Delhi     92          95       Eligible           97  Outstanding
+12         113   Ananya Jain        ECE  Lucknow     91          96       Eligible           96  Outstanding
+
+Department-wise average final marks. >> 
+department
+CSE    88.64
+ECE    80.78
+IT     80.40
+Name: final_marks, dtype: float64
+
+City-wise average final marks. >> 
+city
+Delhi      84.67
+Kanpur     75.62
+Lucknow    83.12
+Noida      94.80
+Name: final_marks, dtype: float64
+
+ Student with the highest attendance. >> 
+   student_id          name department   city  marks  attendance scholar_status  final_marks  performance
+8         109  Meera Kapoor        CSE  Delhi     95          98       Eligible          100  Outstanding
+
+Department with the highest average final marks. >>
+CSE
+
+Number of scholarship-eligible students. >>
+15
+
+Number of students in each performance category. >> 
+performance
+Average         4
+Excellent       5
+Good            9
+Outstanding    12
+Name: student_id, dtype: int64
+(101, 'Aman Sharma', 'CSE', 'Delhi', 85, 92, 'Eligible', 90, 'Outstanding')
+(102, 'Priya Verma', 'IT', 'Lucknow', 78, 88, 'Not Eligible', 78, 'Good')
+(103, 'Rohit Singh', 'CSE', 'Delhi', 92, 95, 'Eligible', 97, 'Outstanding')
+(104, 'Neha Gupta', 'ECE', 'Kanpur', 67, 82, 'Not Eligible', 67, 'Average')
+(105, 'Vikas Yadav', 'IT', 'Lucknow', 74, 85, 'Not Eligible', 74, 'Good')
+(106, 'Sneha Mishra', 'CSE', 'Delhi', 88, 93, 'Eligible', 93, 'Outstanding')
+(107, 'Arjun Mehta', 'ECE', 'Kanpur', 72, 80, 'Not Eligible', 72, 'Good')
+(108, 'Kiran Joshi', 'IT', 'Lucknow', 81, 89, 'Not Eligible', 81, 'Excellent')
+(109, 'Meera Kapoor', 'CSE', 'Delhi', 95, 98, 'Eligible', 100, 'Outstanding')
+(110, 'Rahul Tiwari', 'ECE', 'Kanpur', 69, 84, 'Not Eligible', 69, 'Average')
+(111, 'Ishita Rao', 'CSE', 'Noida', 83, 91, 'Eligible', 88, 'Excellent')
+(112, 'Dev Malhotra', 'IT', 'Delhi', 76, 86, 'Not Eligible', 76, 'Good')
+(113, 'Ananya Jain', 'ECE', 'Lucknow', 91, 96, 'Eligible', 96, 'Outstanding')
+(114, 'Harsh Patel', 'CSE', 'Kanpur', 64, 79, 'Not Eligible', 64, 'Average')
+(115, 'Simran Kaur', 'IT', 'Noida', 89, 94, 'Eligible', 94, 'Outstanding')
+(116, 'Aditya Roy', 'ECE', 'Delhi', 73, 83, 'Not Eligible', 73, 'Good')
+(117, 'Pooja Nair', 'CSE', 'Lucknow', 86, 90, 'Eligible', 91, 'Outstanding')
+(118, 'Mohit Saxena', 'IT', 'Kanpur', 79, 87, 'Not Eligible', 79, 'Good')
+(119, 'Riya Bose', 'ECE', 'Noida', 94, 97, 'Eligible', 99, 'Outstanding')
+(120, 'Kabir Arora', 'CSE', 'Delhi', 82, 92, 'Eligible', 87, 'Excellent')
+(121, 'Nisha Sinha', 'IT', 'Lucknow', 68, 81, 'Not Eligible', 68, 'Average')
+(122, 'Varun Bhat', 'ECE', 'Kanpur', 87, 93, 'Eligible', 92, 'Outstanding')
+(123, 'Tanvi Kulkarni', 'CSE', 'Noida', 90, 95, 'Eligible', 95, 'Outstanding')
+(124, 'Yash Khanna', 'IT', 'Delhi', 71, 85, 'Not Eligible', 71, 'Good')
+(125, 'Sakshi Dubey', 'ECE', 'Lucknow', 84, 89, 'Not Eligible', 84, 'Excellent')
+(126, 'Manav Chopra', 'CSE', 'Kanpur', 77, 88, 'Not Eligible', 77, 'Good')
+(127, 'Aditi Menon', 'IT', 'Noida', 93, 96, 'Eligible', 98, 'Outstanding')
+(128, 'Rohan Das', 'ECE', 'Delhi', 75, 86, 'Not Eligible', 75, 'Good')
+(129, 'Shreya Iyer', 'CSE', 'Lucknow', 88, 94, 'Eligible', 93, 'Outstanding')
+(130, 'Nitin Goyal', 'IT', 'Kanpur', 80, 90, 'Eligible', 85, 'Excellent')
+
+
+('Aman Sharma', 'CSE', 'Eligible')
+('Priya Verma', 'IT', 'Not Eligible')
+('Rohit Singh', 'CSE', 'Eligible')
+('Neha Gupta', 'ECE', 'Not Eligible')
+('Vikas Yadav', 'IT', 'Not Eligible')
+('Sneha Mishra', 'CSE', 'Eligible')
+('Arjun Mehta', 'ECE', 'Not Eligible')
+('Kiran Joshi', 'IT', 'Not Eligible')
+('Meera Kapoor', 'CSE', 'Eligible')
+('Rahul Tiwari', 'ECE', 'Not Eligible')
+('Ishita Rao', 'CSE', 'Eligible')
+('Dev Malhotra', 'IT', 'Not Eligible')
+('Ananya Jain', 'ECE', 'Eligible')
+('Harsh Patel', 'CSE', 'Not Eligible')
+('Simran Kaur', 'IT', 'Eligible')
+('Aditya Roy', 'ECE', 'Not Eligible')
+('Pooja Nair', 'CSE', 'Eligible')
+('Mohit Saxena', 'IT', 'Not Eligible')
+('Riya Bose', 'ECE', 'Eligible')
+('Kabir Arora', 'CSE', 'Eligible')
+('Nisha Sinha', 'IT', 'Not Eligible')
+('Varun Bhat', 'ECE', 'Eligible')
+('Tanvi Kulkarni', 'CSE', 'Eligible')
+('Yash Khanna', 'IT', 'Not Eligible')
+('Sakshi Dubey', 'ECE', 'Not Eligible')
+('Manav Chopra', 'CSE', 'Not Eligible')
+('Aditi Menon', 'IT', 'Eligible')
+('Rohan Das', 'ECE', 'Not Eligible')
+('Shreya Iyer', 'CSE', 'Eligible')
+('Nitin Goyal', 'IT', 'Eligible')
+
+
+(101, 'Aman Sharma', 'CSE', 'Delhi', 85, 92, 'Eligible', 90, 'Outstanding')
+(103, 'Rohit Singh', 'CSE', 'Delhi', 92, 95, 'Eligible', 97, 'Outstanding')
+(106, 'Sneha Mishra', 'CSE', 'Delhi', 88, 93, 'Eligible', 93, 'Outstanding')
+(109, 'Meera Kapoor', 'CSE', 'Delhi', 95, 98, 'Eligible', 100, 'Outstanding')
+(111, 'Ishita Rao', 'CSE', 'Noida', 83, 91, 'Eligible', 88, 'Excellent')
+(113, 'Ananya Jain', 'ECE', 'Lucknow', 91, 96, 'Eligible', 96, 'Outstanding')
+(115, 'Simran Kaur', 'IT', 'Noida', 89, 94, 'Eligible', 94, 'Outstanding')
+(117, 'Pooja Nair', 'CSE', 'Lucknow', 86, 90, 'Eligible', 91, 'Outstanding')
+(119, 'Riya Bose', 'ECE', 'Noida', 94, 97, 'Eligible', 99, 'Outstanding')
+(120, 'Kabir Arora', 'CSE', 'Delhi', 82, 92, 'Eligible', 87, 'Excellent')
+(122, 'Varun Bhat', 'ECE', 'Kanpur', 87, 93, 'Eligible', 92, 'Outstanding')
+(123, 'Tanvi Kulkarni', 'CSE', 'Noida', 90, 95, 'Eligible', 95, 'Outstanding')
+(127, 'Aditi Menon', 'IT', 'Noida', 93, 96, 'Eligible', 98, 'Outstanding')
+(129, 'Shreya Iyer', 'CSE', 'Lucknow', 88, 94, 'Eligible', 93, 'Outstanding')
+
+
+('CSE', 88.64)
+('ECE', 80.78)
+('IT', 80.4)
+
+
+performance
+Average         4
+Excellent       5
+Good            9
+Outstanding    12
+Name: student_id, dtype: int64
+
+Report is ready ... 
+{'total_students': 30, 'average_marks': 81.03, 'average_attendance': 89.27, 'scholarship_students': 15, 'top_student': 'Meera Kapoor', 'best_department': 'CSE', 'highest_attendance_student': 'Meera Kapoor'}
