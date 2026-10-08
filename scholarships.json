@@ -1,0 +1,5 @@
+[
+  {"department": "CSE", "bonus_marks": 5, "minimum_marks": 80, "minimum_attendance": 90},
+  {"department": "IT", "bonus_marks": 3, "minimum_marks": 78, "minimum_attendance": 88},
+  {"department": "ECE", "bonus_marks": 4, "minimum_marks": 82, "minimum_attendance": 90}
+]
